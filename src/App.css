@@ -36,3 +36,97 @@
     transform: rotate(360deg);
   }
 }
+/* .header {
+  display: grid;
+  grid-template-columns: 75px 75px 75px 75px 75px 75px 75px;
+  grid-template-rows: 65px;
+  width: max-content;
+  margin-inline: auto;
+}
+.days {
+  display: grid;
+  grid-template-columns: 75px 75px 75px 75px 75px 75px 75px;
+  grid-template-rows: 75px 75px 75px 75px 75px 75px 75px;
+  width: max-content;
+  margin-inline: auto;
+} */
+.days{
+  display: grid;
+    align-items: flex-start;
+    
+    /* play with this to change height of the children, 50% will fill half */
+    grid-template-columns: repeat(7, auto); /* do not set template columns and rows */
+    grid-auto-flow: column;
+}
+.week{
+  display: grid;
+}
+.day{
+  margin: 15px;
+  /* display: grid; */
+}
+.day > span{
+  color: "#3e8e41";
+  /* display: grid; */
+}
+.calendar{
+  max-width: 60%;
+}
+.dropbtn {
+  /* background-color: #4CAF50; */
+  color: #000;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  background-color: #f1f1f1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  cursor: pointer;
+}
+.listitem{
+  display: block;
+  border: none;
+  margin-block: 10px ;
+  cursor: pointer;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown:hover .dropbtn:hover {
+  /* background-color: #3e009a; */
+  color: #000;
+}
+.timeline{
+  display: flex;
+}
+.prev{
+  border: none;
+  margin-inline: 10px
+}
+.heading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media only screen and (max-width: 768px) {
+  .calendar{
+    max-width: 100%;
+  }
+}
