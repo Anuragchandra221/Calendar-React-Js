@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  position: relative;
 }
 
 .App-logo {
@@ -53,6 +54,7 @@
 .days{
   display: grid;
     align-items: center;
+    color: #0b2d5a;
     
     /* play with this to change height of the children, 50% will fill half */
     grid-template-columns: repeat(8, 120px); /* do not set template columns and rows */
@@ -61,39 +63,68 @@
 }
 .week{
   display: grid;
+  margin-bottom: 5px;
 }
 .day{
-  margin: 15px;
-  height: 80px;
+  height: 120px;
   cursor: pointer;
   /* display: grid; */
+}
+.mCalendar{
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .box{
   border-right: 2px solid grey;
   /* border-bottom: 2px solid grey; */
   height: 100%;
   cursor: pointer;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+.box::-webkit-scrollbar{
+  display: none;
 }
 .day > span{
   color: "#3e8e41";
   /* display: grid; */
 }
-.calendar{
-  max-width: 60%;
-}
 .selected{
-  border: 2px solid blue
+  border: 2px solid #1877f2;
+}
+.inputArea{
+  /* position: absolute; */
+  margin-inline: 20px;
+  padding-top: 110px;
+  width: 20em;
+}
+.inputArea input{
+  width: 70%;
+  height: 1.5em;
+  margin-block: 15px;
+  outline: none;
+}
+.inputArea input[type='text' i]{
+  padding: 2px 3px;
+}
+.inputArea button{
+  width: 70%;
+  height: 2.5em;
 }
 .dropbtn {
-  /* background-color: #4CAF50; */
-  color: #000;
+  background-color: #1877f2;
+  color: #fff;
   padding: 10px;
   font-size: 16px;
   border: none;
+  border-radius: 10px;
   cursor: pointer;
 }
 .mainCalendar{
   display: flex;
+}
+.hr{
+  margin: 0px;
 }
 .dropdown {
   position: relative;
@@ -101,21 +132,26 @@
 }
 .centerDiv{
   display: flex;
+  
 }
 .dropdown-content {
   display: none;
   position: absolute;
   min-width: 160px;
-  background-color: #f1f1f1;
+  background-color: #1877f2;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   cursor: pointer;
+  border-radius: 10px;
 }
 .listitem{
   display: block;
   border: none;
   margin-block: 10px ;
   cursor: pointer;
+  background-color: #1877f2;
+  color: #fff;
+  
 }
 .timeline{
   display: flex;
@@ -131,7 +167,7 @@
 
 .dropdown:hover .dropbtn:hover {
   /* background-color: #3e009a; */
-  color: #000;
+  color: #fff;
 }
 .timeline{
   display: flex;
@@ -145,8 +181,39 @@
   align-items: center;
   justify-content: center;
 }
-@media only screen and (max-width: 768px) {
-  .calendar{
-    max-width: 100%;
+@media only screen and (max-width: 1200px) {
+  .mainCalendar{
+    width: 100%;
+    padding: 0;
+  }
+  .centerDiv{
+    width: 100%;
+  }
+  .mCalendar{
+    width: 100%;
+  }
+  .mainCalendar{
+    flex-direction: column;
+  }
+  .inputArea{
+    /* position: absolute; */
+    margin-inline: 0px;
+    padding-block: 10px;
+    width: 30em;
+  }
+  .days{
+    display: grid;
+      align-items: center;
+      color: #0b2d5a;
+      
+      /* play with this to change height of the children, 50% will fill half */
+      grid-template-columns: repeat(8, 12.5%); /* do not set template columns and rows */
+      grid-template-rows: 1fr; /* do not set template columns and rows */
+      grid-auto-flow: column;
+  }
+  .day{
+    height: 4.5em;
+    cursor: pointer;
+    /* display: grid; */
   }
 }

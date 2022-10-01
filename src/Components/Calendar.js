@@ -9,9 +9,9 @@ const Calendar = ()=>{
 
     return(
         <div className="calendar">
-            <h2 className="heading"><button className="prev" onClick={()=>{
+            <h2 className="heading"><button className="prev" style={{backgroundColor: "#1877f2", color: '#fff', borderRadius: '10px', height: '2em', cursor: 'pointer'}} onClick={()=>{
                 setYear((prev)=>prev-1)
-            }}>&lt;</button>
+            }}><i className="fa-solid fa-chevron-left" ></i></button>
                 {year}
                 <div className="dropdown">
                 <button className="dropbtn" style={{marginInline: '10px', marginBottom: '1px'}}>{months[month]}<i style={{marginLeft: '10px'}} className="fa-solid fa-caret-down"></i></button>
@@ -30,9 +30,9 @@ const Calendar = ()=>{
                     <button className="listitem" onClick={()=>setMonth(11)}>December</button>
                 </div>
                 </div>
-                <button className="prev" onClick={()=>{
+                <button className="prev" style={{backgroundColor: "#1877f2", color: '#fff', borderRadius: '10px', height: '2em', cursor: 'pointer'}} onClick={()=>{
                 setYear((prev)=>prev+1)
-            }}>&gt;</button>
+            }}><i className="fa-solid fa-chevron-right" ></i></button>
             </h2>
             <div className="dropdown">
             <button className="dropbtn" style={{marginBottom: '1px'}}>Week {weekno} <i style={{marginLeft: '10px'}} className="fa-solid fa-caret-down"></i></button>

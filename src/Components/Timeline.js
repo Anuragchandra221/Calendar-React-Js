@@ -43,7 +43,7 @@ const Timeline = (props)=>{
                         {props.days.map((index1, i)=>{
                             if(i<props.weekno*7 && i>=(props.weekno-1)*7){
                                 return (
-                                    <div   className={ index1.selected && props.time===index?`selected box`: `box`}  onClick={()=>{
+                                    <div   className={ index1.selected && props.time===index?`selected box`: `box`} style={index1.currentMonth?{backgroundColor: '#fff'}:{backgroundColor: '#dedede', opacity: '0.5', cursor: 'default'}} onClick={()=>{
                                         if(index1.currentMonth){
 
                                             select(index1, index)
@@ -59,7 +59,6 @@ const Timeline = (props)=>{
                                             )
                                         }
                                     }):''}
-                                    
                                     </div>
                                 )
                             }
@@ -67,7 +66,7 @@ const Timeline = (props)=>{
                         })}
                     
                         </div>
-                        <hr/>
+                        {index==='1:30'?<></>:<hr className="hr" />}
                         </div>
                     )
                     
