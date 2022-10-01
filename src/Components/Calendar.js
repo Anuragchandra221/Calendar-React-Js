@@ -1,7 +1,6 @@
 import { useState } from "react"
 import Days from "./Days"
 import { months } from "../constants"
-import Timeline from "./Timeline"
 const Calendar = ()=>{
     const [date, setDate] = useState(new Date())
     const [weekno, setweekno] = useState(1)
@@ -53,7 +52,8 @@ const Calendar = ()=>{
                     })}
                 </div>
             </div> */}
-            <div>
+            <div className="centerDiv">
+                    
                     <Days year={year} month={month} weekno={weekno} />
             </div>
         </div>

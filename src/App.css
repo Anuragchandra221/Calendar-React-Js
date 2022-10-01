@@ -52,10 +52,11 @@
 } */
 .days{
   display: grid;
-    align-items: flex-start;
+    align-items: center;
     
     /* play with this to change height of the children, 50% will fill half */
-    grid-template-columns: repeat(7, auto); /* do not set template columns and rows */
+    grid-template-columns: repeat(8, 120px); /* do not set template columns and rows */
+    grid-template-rows: 1fr; /* do not set template columns and rows */
     grid-auto-flow: column;
 }
 .week{
@@ -63,7 +64,15 @@
 }
 .day{
   margin: 15px;
+  height: 80px;
+  cursor: pointer;
   /* display: grid; */
+}
+.box{
+  border-right: 2px solid grey;
+  /* border-bottom: 2px solid grey; */
+  height: 100%;
+  cursor: pointer;
 }
 .day > span{
   color: "#3e8e41";
@@ -71,6 +80,9 @@
 }
 .calendar{
   max-width: 60%;
+}
+.selected{
+  border: 2px solid blue
 }
 .dropbtn {
   /* background-color: #4CAF50; */
@@ -80,12 +92,16 @@
   border: none;
   cursor: pointer;
 }
-
+.mainCalendar{
+  display: flex;
+}
 .dropdown {
   position: relative;
   display: inline-block;
 }
-
+.centerDiv{
+  display: flex;
+}
 .dropdown-content {
   display: none;
   position: absolute;
@@ -101,7 +117,11 @@
   margin-block: 10px ;
   cursor: pointer;
 }
-
+.timeline{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 .dropdown:hover .dropdown-content {
   display: flex;
   flex-direction: column;
