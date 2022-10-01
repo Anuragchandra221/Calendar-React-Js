@@ -8,7 +8,6 @@ const Days = (props)=>{
     const startWeek = startDay.getDay()
     const [time, setTime] = useState(false)
     const [days, setDays] = useState([])
-    console.log(startDay)
     // startDay.setDate(startDay.getDate() - (startWeek))
     // console.log(startDay)
     // console.log(startDay.getMonth())
@@ -31,8 +30,7 @@ const Days = (props)=>{
                 year: startDay.getFullYear(),
                 week: startDay.getDay(),
                 selected: false,
-                time: '',
-                task: ''
+                task: {}
             }
             setDays((prev)=>[...prev, dayz])
         }
@@ -49,7 +47,7 @@ const Days = (props)=>{
                             {days.map((index, i)=>{
                                 if(i<props.weekno*7 && i>=(props.weekno-1)*7){
                                     return (
-                                        <div>
+                                        <div key={i}>
                                             <span className="week">{weeks[index.week]}</span>
                                         <div  className="day"  key={i}>
                                         {/* <span>{index.date}</span> */}

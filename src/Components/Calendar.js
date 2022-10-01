@@ -13,9 +13,9 @@ const Calendar = ()=>{
                 setYear((prev)=>prev-1)
             }}>&lt;</button>
                 {year}
-                <div class="dropdown">
-                <button class="dropbtn" style={{marginInline: '10px', marginBottom: '1px'}}>{months[month]}<i style={{marginLeft: '10px'}} class="fa-solid fa-caret-down"></i></button>
-                <div class="dropdown-content">
+                <div className="dropdown">
+                <button className="dropbtn" style={{marginInline: '10px', marginBottom: '1px'}}>{months[month]}<i style={{marginLeft: '10px'}} className="fa-solid fa-caret-down"></i></button>
+                <div className="dropdown-content">
                     <button className="listitem"  onClick={()=>setMonth(0)}>January</button>
                     <button className="listitem" onClick={()=>setMonth(1)}>February</button>
                     <button className="listitem" onClick={()=>setMonth(2)}>March</button>
@@ -34,9 +34,9 @@ const Calendar = ()=>{
                 setYear((prev)=>prev+1)
             }}>&gt;</button>
             </h2>
-            <div class="dropdown">
-            <button class="dropbtn" style={{marginBottom: '1px'}}>Week {weekno} <i style={{marginLeft: '10px'}} class="fa-solid fa-caret-down"></i></button>
-            <div class="dropdown-content">
+            <div className="dropdown">
+            <button className="dropbtn" style={{marginBottom: '1px'}}>Week {weekno} <i style={{marginLeft: '10px'}} className="fa-solid fa-caret-down"></i></button>
+            <div className="dropdown-content">
                 <button className="listitem" onClick={()=>setweekno(1)}>Week 1</button>
                 <button className="listitem" onClick={()=>setweekno(2)}>Week 2</button>
                 <button className="listitem" onClick={()=>setweekno(3)}>Week 3</button>

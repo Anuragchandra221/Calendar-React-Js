@@ -27,9 +27,6 @@ const Timeline = (props)=>{
                 index1.selected = false
                 props.setTime(time)
             }
-            if(index1.selected){
-                console.log(index1)
-            }
         })
     }
     return (
@@ -37,7 +34,7 @@ const Timeline = (props)=>{
             
             {Times.map((index, i)=>{
                     return (
-                        <div>
+                        <div key={`${i}a`}>
                         <div className="days">
                         <div  className="day"  key={i}>
                         {/* <span>{index.date}</span> */}
@@ -46,14 +43,23 @@ const Timeline = (props)=>{
                         {props.days.map((index1, i)=>{
                             if(i<props.weekno*7 && i>=(props.weekno-1)*7){
                                 return (
-                                    <div  className={ index1.selected && props.time===index?`selected box`: `box`}  onClick={()=>{
+                                    <div   className={ index1.selected && props.time===index?`selected box`: `box`}  onClick={()=>{
                                         if(index1.currentMonth){
 
                                             select(index1, index)
                                         }
-                                    }}  key={i}>
+                                    }}  key={`${i}b`}>
                                     {/* <span>{index.date}</span> */}
-                                    {index1.currentMonth && index1.time===index?<span>{index1.task}</span>:<></>}
+                                    
+                                    { index1.task?
+                                    Object.keys(index1.task).map(key => {
+                                        if(key==index){
+                                            return (
+                                                <span>{index1.task[key]}</span>
+                                            )
+                                        }
+                                    }):''}
+                                    
                                     </div>
                                 )
                             }
