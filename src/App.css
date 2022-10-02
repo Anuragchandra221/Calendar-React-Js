@@ -212,10 +212,14 @@
   .mCalendar{
     width: 98%;
     margin-inline: auto;
+    box-shadow: none;
     margin-top: 20px;
     padding: 0px;
     padding-bottom: 10px;
     padding-inline: 4px;
+  }
+  .hr{
+    margin: 0px;
   }
   .mainCalendar{
     flex-direction: column;
@@ -224,7 +228,7 @@
     /* position: absolute; */
     margin-inline: 0px;
     padding-block: 10px;
-    width: 30em;
+    width: 90%;
     margin-inline: auto;
   }
   .days{
@@ -234,7 +238,7 @@
       
       /* play with this to change height of the children, 50% will fill half */
       grid-template-columns: repeat(8, 12.5%); /* do not set template columns and rows */
-      grid-template-rows: 1fr; /* do not set template columns and rows */
+      grid-template-rows: 1fr; /*do not set template columns and rows*/
       grid-auto-flow: column;
   }
   .day{
@@ -243,6 +247,19 @@
     /* display: grid; */
   }
   .box{
-    height: 4.5em;
+    height: 4em;
+  }
+  .selected{
+    border: 2px solid #1877f2;
+    height: 4em;
+    max-height: 100%; 
+    cursor: pointer;
+    overflow-y: scroll;
+  }
+  .boxb{
+    /* border-bottom: 2px solid grey; */
+    height: 4em;
+    cursor: pointer;
+    overflow-y: scroll;
   }
 }
