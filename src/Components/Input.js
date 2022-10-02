@@ -27,19 +27,19 @@ const Input = (props)=>{
             <div className="inputArea">
                 <div>
                     <div>Add event</div>
-                    <input type="text" style={{border: 'none', borderBottom: '2px solid #1877f2'}} placeholder="Add your event..." onChange={(e)=>{setInput(e.target.value)}} />
+                    <input type="text" style={{border: 'none', borderBottom: '2px solid #00367d'}} placeholder="Add your event..." onChange={(e)=>{setInput(e.target.value)}} />
                 </div>
                 <div className="dropdown">
                     {/* <button className="dropbtn" style={{marginInline: '10px', marginBottom: '1px'}}>{props.time}</button> */}
                     
                     </div>
-                    <button onClick={setTask} style={{backgroundColor: '#1877f2', border: '2px solid #1877f2', color: '#fff', borderRadius: '10px', cursor: 'pointer'}}>Add</button>
+                    <button onClick={setTask} style={{backgroundColor: '#00367d', border: '2px solid #00367d', color: '#fff', borderRadius: '10px', cursor: 'pointer'}}>Add</button>
             </div>
         )
     }else{
         return(
-            <div className="inputArea" style={{color: '#1877f2'}}>
-                Click To Add Event
+            <div className="inputArea" style={{color: '#00367d'}}>
+                Click on any box to add event
             </div>
         )
     }

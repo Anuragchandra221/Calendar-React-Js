@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   position: relative;
+  padding-bottom: 10px;
 }
 
 .App-logo {
@@ -73,16 +74,28 @@
 .mCalendar{
   padding: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
 }
 .box{
   border-right: 2px solid grey;
   /* border-bottom: 2px solid grey; */
-  height: 100%;
+  height: 120px;
   cursor: pointer;
-  overflow-y: auto;
-  white-space: nowrap;
+  overflow-y: scroll;
+}
+.boxb{
+  /* border-bottom: 2px solid grey; */
+  height: 120px;
+  cursor: pointer;
+  overflow-y: scroll;
 }
 .box::-webkit-scrollbar{
+  display: none;
+}
+.boxb::-webkit-scrollbar{
+  display: none;
+}
+.selected::-webkit-scrollbar{
   display: none;
 }
 .day > span{
@@ -91,6 +104,9 @@
 }
 .selected{
   border: 2px solid #1877f2;
+  height: 120px;
+  cursor: pointer;
+  overflow-y: scroll;
 }
 .inputArea{
   /* position: absolute; */
@@ -112,12 +128,12 @@
   height: 2.5em;
 }
 .dropbtn {
-  background-color: #1877f2;
-  color: #fff;
-  padding: 10px;
+  background-color: #fff;
+  color: #00367d;
+  
+  padding: 4px;
   font-size: 16px;
   border: none;
-  border-radius: 10px;
   cursor: pointer;
 }
 .mainCalendar{
@@ -128,17 +144,19 @@
 }
 .dropdown {
   position: relative;
-  display: inline-block;
+  display: flex;
+  padding-top: 6px;
 }
 .centerDiv{
   display: flex;
   
 }
 .dropdown-content {
+  margin-top: 30px;
   display: none;
   position: absolute;
   min-width: 160px;
-  background-color: #1877f2;
+  background-color: #00367d;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   cursor: pointer;
@@ -149,7 +167,7 @@
   border: none;
   margin-block: 10px ;
   cursor: pointer;
-  background-color: #1877f2;
+  background-color: #00367d;
   color: #fff;
   
 }
@@ -167,14 +185,15 @@
 
 .dropdown:hover .dropbtn:hover {
   /* background-color: #3e009a; */
-  color: #fff;
+  color: #00367d;
 }
 .timeline{
   display: flex;
 }
 .prev{
   border: none;
-  margin-inline: 10px
+  margin-inline: 10px;
+  margin-top: 5px;
 }
 .heading{
   display: flex;
@@ -186,11 +205,17 @@
     width: 100%;
     padding: 0;
   }
+
   .centerDiv{
     width: 100%;
   }
   .mCalendar{
-    width: 100%;
+    width: 98%;
+    margin-inline: auto;
+    margin-top: 20px;
+    padding: 0px;
+    padding-bottom: 10px;
+    padding-inline: 4px;
   }
   .mainCalendar{
     flex-direction: column;
@@ -200,6 +225,7 @@
     margin-inline: 0px;
     padding-block: 10px;
     width: 30em;
+    margin-inline: auto;
   }
   .days{
     display: grid;
@@ -215,5 +241,8 @@
     height: 4.5em;
     cursor: pointer;
     /* display: grid; */
+  }
+  .box{
+    height: 4.5em;
   }
 }

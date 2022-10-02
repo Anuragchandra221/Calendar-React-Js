@@ -40,7 +40,13 @@ const Days = (props)=>{
             }
             dyz.push(dayz)
         }
-        setDays(dyz)
+        console.log((props.year in props.dict1))
+        if((props.year in props.dict1)){
+            
+        }else{
+            props.dict1[props.year] = dyz
+        }
+        setDays(props.dict1[props.year])
     }, [props.year, props.month])
     
     if(days){
