@@ -44,10 +44,9 @@ const Timeline = (props)=>{
                             if(i<props.weekno*7 && i>=(props.weekno-1)*7){
                                 if(i===(props.weekno*7-1)){
                                     return (
-                                        <div   className={ index1.selected && props.time===index ?`selected boxb`: `boxb`} style={
+                                        <div className={ index1.selected && props.time===index ?`selected boxb`: `boxb`} style={
                                             index1.currentMonth?{backgroundColor: '#fff'}:{backgroundColor: '#dedede', opacity: '0.5', cursor: 'default'} } onClick={()=>{
                                             if(index1.currentMonth){
-    
                                                 select(index1, index)
                                             }
                                         }}  key={`${i}b`}>
@@ -68,7 +67,6 @@ const Timeline = (props)=>{
                                         <div   className={ index1.selected && props.time===index ?`selected`: `box`} style={
                                             index1.currentMonth?{backgroundColor: '#fff'}:{backgroundColor: '#dedede', opacity: '0.5', cursor: 'default'} } onClick={()=>{
                                             if(index1.currentMonth){
-    
                                                 select(index1, index)
                                             }
                                         }}  key={`${i}b`}>

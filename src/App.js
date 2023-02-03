@@ -1,14 +1,26 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import Calendar from './Components/Calendar';
+import Login from './Components/Login';
+import { getToken } from './services';
 
 function App() {
-  console.log("hi")
   const dict1 = {}
   return (
-    <div className="App">
+    <BrowserRouter>
+    <Routes>
+    <Route path="/" element={
+      <div className="App">
       <Calendar dict1={dict1} />
-    </div>
+    </div>} />
+    
+        <Route path="login" element={<Login />} />
+        
+    </Routes>
+      
+    </BrowserRouter>
+    
   );
 }
 

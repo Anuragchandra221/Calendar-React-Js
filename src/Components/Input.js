@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { postData } from "../services"
 import { Times } from "./Timeline"
 
 const Input = (props)=>{
@@ -8,7 +9,6 @@ const Input = (props)=>{
         props.days.map((index, i)=>{
             if(index.selected ){
                 setSelected(true)
-                 
             }
         })
         console.log(selected)
@@ -17,9 +17,14 @@ const Input = (props)=>{
         props.days.map((index, i)=>{
             if(index.selected ){
                 index.task[props.time] = input
+                
+                postData(input,index.year,index.month,index.number,props.time).then((results)=>{
+                    console.log(results.data)
+                })
                  
             }
         })
+        console.log(props.days)
         props.setDays((prev)=>[...prev]) 
     }
     if(selected){
