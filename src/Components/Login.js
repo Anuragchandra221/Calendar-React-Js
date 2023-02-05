@@ -1,21 +1,31 @@
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { redirect, useNavigate } from "react-router-dom"
-import { login, setUserSession } from "../services"
+import { getToken, login, setUserSession } from "../services"
 import  { Navigate } from 'react-router-dom'
 
 const Login = ()=>{
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
     const navigate = useNavigate()
-    console.log(username)
-    console.log(password)
+    
+    useEffect(()=>{
+        if(getToken()){
+            navigate("/")
+        }
+    },[])
     const submit = (e)=>{
             e.preventDefault();
-            console.log("clicked")
             login(username,password).then((results)=>{
-                setUserSession(results.data.access, results.data.refresh)
+                localStorage.removeItem("access_token")
+                    localStorage.removeItem("refresh_token")
+                //  setUserSession(results.data.access, results.data.refresh)
+                localStorage.setItem("access_token", results.data.access)
+                localStorage.setItem("refresh_token", results.data.refresh)
+                console.log(localStorage)
                 navigate("/")
+            }).catch((err)=>{
+                console.log("err")
             })
     }
     return (

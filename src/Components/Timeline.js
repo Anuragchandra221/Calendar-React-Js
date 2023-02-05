@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export const Times = ['9:30','10:30','11:30', '12:30', '1:30']
 
@@ -19,7 +19,7 @@ const Timeline = (props)=>{
     const select = (index, time)=>{
         props.days.map((index1, i)=>{
             if(index1.year === index.year && index1.month===index.month && index1.number===index.number && index1.week===index.week){
-                console.log(index1.week, index.week)
+    
                 index1.selected = true
                 props.setTime(time)
                 setSelected((prev)=>!prev)

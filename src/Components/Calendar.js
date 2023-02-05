@@ -11,7 +11,7 @@ const reducer = (state, action)=>{
             return state+1
     }
 }
-const Calendar = (props)=>{
+const Calendar = ()=>{
     const [date, setDate] = useState(new Date())
     const [weekno, setweekno] = useState(1)
     const [data, setData] = useState()
@@ -20,34 +20,56 @@ const Calendar = (props)=>{
     // const [year, setYear] = useState(date.getFullYear())
     const [year, dispatch] = useReducer(reducer, date.getFullYear())
     const [month, setMonth] = useState(date.getMonth())
+    const [loading, setLoading] = useState(true)
+    let dict1 = {}
+    const time = 4*60*1000
     // console.log("calendar")
      useEffect(()=>{
-        if(isUserLoggedIn){
+        if(loading){
+            dict1 = {}
+            refreshToken().then((results)=>{
+                // console.log(results.data.access)
+                setUserSession(results.data.access, results.data.refresh)
+                setLoading(false)
+                // console.log('loading')
+            }).catch((err)=>{
+                // console.log(err.response)
+            })
+        }
+        if(getToken()){
+            // console.log(localStorage.getItem("access_token"))
             getData().then((results)=>{
                 setData(results.data)
+                setLoading(false)
             }).catch((err)=>{
-                if(err.response){
-                    if(err.response.status===401){
-                        refreshToken().then((results)=>{
-                            setUserSession(results.data.access, results.data.refresh)
-                            return <Navigate to="/" />
-                        }).catch((err)=>{
-
-                        })
-                    }
-                }
+                console.log(err)
             })
+            refreshToken().then((results)=>{
+                setUserSession(results.data.access, results.data.refresh)
+            }).catch((err)=>{
+                // console.log(err.response)
+            })
+            let interval = setInterval(()=>{
+                console.log("hi")
+                refreshToken().then((results)=>{
+                    setUserSession(results.data.access, results.data.refresh)
+                }).catch((err)=>{
+                    // console.log(err.response)
+                })
+            },time)
+            return ()=>clearInterval(interval)
+            
         }else{
             navigate('login')
         }
-     },[])
-     if(data){
+     },[loading])
+     if(!loading){
 
          return(
              <div className="calendar" style={{color: '#00367d'}}>
                 <button onClick={()=>{
-                    sessionStorage.removeItem("access_token")
-                    sessionStorage.removeItem("refresh_token")
+                    localStorage.removeItem("access_token")
+                    localStorage.removeItem("refresh_token")
                     navigate("login")
                 }}>Logout</button>
                  <h2 className="heading" style={{marginInline: '0.83em'}}><button className="prev" style={{backgroundColor: "#fff", color: '#00367d', borderRadius: '10px', height: '2em', cursor: 'pointer'}} onClick={()=>{
@@ -112,11 +134,13 @@ const Calendar = (props)=>{
                      </div>
                  </div> */}
                  <div className="centerDiv">
-                         {data?<Days year={year} month={month} weekno={weekno} dict1={props.dict1} data={data} />:<></>}
+                         {data?<Days year={year} month={month} weekno={weekno} dict1={dict1} data={data} />:<></>}
                          
                  </div>
              </div>
          )
+     }else{
+        return <h1>loading...</h1>
      }
 
 }

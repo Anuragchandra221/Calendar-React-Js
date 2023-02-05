@@ -18,7 +18,6 @@ const Days = (props)=>{
     useEffect(()=>{
         const startDay = new Date(props.year, props.month)
         const startWeek = startDay.getDay()
-        console.log(startDay)
         dyz = []
         
             for(let day=0; day<42; day++){
@@ -33,9 +32,8 @@ const Days = (props)=>{
                 // console.log(startDay.getMonth(), props.month)
                 let d = {}
                     props.data.map((val, i)=>{
-                        console.log(val.month, val.year, 'hi', val.day)
                         if(val.month === props.month && val.year === props.year && startDay.getDate()==val.day){
-                            console.log("yes")
+                            
                             d[val.time] = val.title
                         }
                     })
@@ -77,8 +75,6 @@ const Days = (props)=>{
             task: {}
         }
     },[props.month,props.year])
-    console.log(days)
-    console.log(props.dict1)
     // console.log("days")
     if(days){
         return (

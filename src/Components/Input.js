@@ -11,7 +11,6 @@ const Input = (props)=>{
                 setSelected(true)
             }
         })
-        console.log(selected)
     })
     const setTask = ()=>{
         props.days.map((index, i)=>{
@@ -19,12 +18,12 @@ const Input = (props)=>{
                 index.task[props.time] = input
                 
                 postData(input,index.year,index.month,index.number,props.time).then((results)=>{
-                    console.log(results.data)
+                    // console.log(results.data)
                 })
                  
             }
         })
-        console.log(props.days)
+        // console.log(props.days)
         props.setDays((prev)=>[...prev]) 
     }
     if(selected){
