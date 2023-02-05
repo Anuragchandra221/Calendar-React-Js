@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { checkUser, registerUser } from '../services'
 import './style/SignUp.css'
 
@@ -46,7 +46,7 @@ function SignUp() {
         if(username && password && confirmPassword && email){
             if(!passErr && !passwordErr && !emailErr){
                 registerUser(username,password,email).then((results)=>{
-                    navigate("/")
+                    navigate("/login")
                 })
             }
         }
@@ -68,30 +68,36 @@ function SignUp() {
     }, [email, confirmPassword, password,username])
     
   return (
-    <div>
-        <form>
-            <p>Username</p>
-            <input type="text" onChange={(e)=>setUsername(e.target.value)} className={!userErr?"input green":"input red"}/>
-            <p>{userErr=="Username is invalid"?<span id='valid'>Username is Taken</span>:<></>}</p>
-            <p>Email</p>
-            <input type="email" onChange={(e)=>{
+    <div className='signup mx-auto'>
+        <form className='form'>
+            <p className='label'>Username</p>
+            <input type="text"  placeholder='Enter your username' onChange={(e)=>setUsername(e.target.value)} className={!userErr?"input green mb-2":"input red mb-2"}/>
+            <p>{userErr=="Username is invalid"?<span className='invalid'>Username is Taken</span>:<></>}</p>
+            
+            <p className='label'>Email</p>
+            <input type="email"  placeholder='Enter your email' onChange={(e)=>{
                 setEmail(e.target.value)
             }}
-            className={!emailErr?"input green":"input red"}
+            className={!emailErr?"input green mb-2":"input red mb-2"}
                 />
-            <p>{emailErr?<span>{emailErr}</span>:<></>}</p>
-            <p>Password</p>
-            <input type="password" onChange={(e)=>setPassword(e.target.value)} className={!passErr?"input green":"input red"} />
-            <p>{passErr?<span>{passErr}</span>:<></>}</p>
-            <p>Confirm Password</p>
-            <input type="password" onChange={(e)=>{
+            <p>{emailErr?<span className='invalid'>{emailErr}</span>:<></>}</p>
+
+
+            <p className='label'>Password</p>
+            <input type="password"  placeholder='Enter your password' onChange={(e)=>setPassword(e.target.value)} className={!passErr?"input green mb-2":"input red mb-2"} />
+            <p>{passErr?<span className='invalid'>{passErr}</span>:<></>}</p>
+
+
+            <p className='label'>Confirm Password</p>
+            <input type="password"  placeholder='Confirm your password' onChange={(e)=>{
                 setConfirmPassword(e.target.value)
                 }}
-                className={!passwordErr?"input green":"input red"}
+                className={!passwordErr?"input green mb-2":"input red mb-2"}
                 />
-                <p>{passwordErr?<span>{passwordErr}</span>:<></>}</p>
-            <button onClick={register}>Register</button>
+                <p>{passwordErr?<span className='invalid'>{passwordErr}</span>:<></>}</p>
+            <button onClick={register} className="button">Register</button>
         </form>
+        <p className='mt-3 mx-auto'>Already have an account? <Link to="/login">Login</Link></p>
     </div>
   )
 }

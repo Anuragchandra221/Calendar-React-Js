@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { weeks }  from "../constants"
 import Timeline from "./Timeline"
 import Input from "./Input"
-
+import { Times } from "./Timeline"
 
 const Days = (props)=>{
     const startDay = new Date(props.year, props.month)
@@ -80,9 +80,12 @@ const Days = (props)=>{
         return (
             <div className="mainCalendar" style={{marginTop: '15px'}}>
                 <Input days={days} setDays = {setDays} time ={time} />
+                <div className="timing">
+                
+                </div>
                 <div className="mCalendar">
-
-                    <div   className="days">
+                    
+                    <div   className="days ">
                         <div className="day"></div>
                             {days.map((index, i)=>{
                                 // {console.log(index.month)}
@@ -101,8 +104,13 @@ const Days = (props)=>{
                                 
                             })}
                     </div>
+                    
+                    
                 <hr className="hr" />
+                <div>
+
                 <Timeline days={days} weekno={props.weekno} setDays = {setDays} time={time} setTime={setTime} />
+                </div>
                 </div>
             </div>
         )

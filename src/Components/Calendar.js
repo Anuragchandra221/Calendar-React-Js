@@ -3,6 +3,8 @@ import Days from "./Days"
 import { months } from "../constants"
 import {getData, getToken, refreshToken, setUserSession} from "../services"
 import { Navigate, useNavigate } from "react-router-dom"
+import jwtDecode from "jwt-decode"
+import { Circles } from 'react-loader-spinner'
 const reducer = (state, action)=>{
     switch(action.type){
         case "decrement":
@@ -23,18 +25,29 @@ const Calendar = ()=>{
     const [loading, setLoading] = useState(true)
     let dict1 = {}
     const time = 4*60*1000
+    const token = getToken()
+    let username = ''
+    if(token){
+        var decoded = jwtDecode(token)
+        username = decoded.username
+    }
     // console.log("calendar")
      useEffect(()=>{
         if(loading){
             dict1 = {}
-            refreshToken().then((results)=>{
-                // console.log(results.data.access)
-                setUserSession(results.data.access, results.data.refresh)
-                setLoading(false)
-                // console.log('loading')
-            }).catch((err)=>{
-                // console.log(err.response)
-            })
+            if(getToken()){
+                console.log('hih')
+                refreshToken().then((results)=>{
+                    // console.log(results.data.access)
+                    setUserSession(results.data.access, results.data.refresh)
+                    setLoading(false)
+                    // console.log('loading')
+                }).catch((err)=>{
+                    // console.log(err.response)
+                })
+            }else{
+                navigate("/login")
+            }
         }
         if(getToken()){
             // console.log(localStorage.getItem("access_token"))
@@ -67,17 +80,22 @@ const Calendar = ()=>{
 
          return(
              <div className="calendar" style={{color: '#00367d'}}>
-                <button onClick={()=>{
-                    localStorage.removeItem("access_token")
-                    localStorage.removeItem("refresh_token")
-                    navigate("login")
-                }}>Logout</button>
-                 <h2 className="heading" style={{marginInline: '0.83em'}}><button className="prev" style={{backgroundColor: "#fff", color: '#00367d', borderRadius: '10px', height: '2em', cursor: 'pointer'}} onClick={()=>{
+                <div className="mt-3 d-flex">
+                <p className="mr-auto ml-3" style={{width:'fit-content', fontSize:'1.7em'}}>Hello {username}</p>
+                <div className="ml-auto mr-3" style={{width:'fit-content'}}>
+                    <button className="logout" onClick={()=>{
+                        localStorage.removeItem("access_token")
+                        localStorage.removeItem("refresh_token")
+                        navigate("login")
+                    }}>Logout</button>
+                </div>
+                </div>
+                 <h4 className="heading mt-3" style={{marginInline: '0.83em'}}><button className="prev mx-0 mt-0" style={{backgroundColor: "#fff", color: '#00367d', borderRadius: '10px',  cursor: 'pointer', fontSize: '20px'}} onClick={()=>{
                      dispatch({type:"decrement"})
                  }}><i className="fa-solid fa-chevron-left" ></i></button>
                      {year}
                      <div className="dropdown">
-                     <button className="dropbtn" style={{marginInline: '10px', marginBottom: '1px'}}>{months[month]}<i style={{marginLeft: '10px'}} className="fa-solid fa-caret-down"></i></button>
+                     <button className="dropbtn mr-0" style={{marginInline: '10px', marginBottom: '1px', fontSize:'0.8em'}}>{months[month]}<i style={{marginLeft: '10px'}} className="fa-solid fa-caret-down"></i></button>
                      <div className="dropdown-content">
                          <button className="listitem"  onClick={()=>setMonth(0)}>January</button>
                          <button className="listitem" onClick={()=>setMonth(1)}>February</button>
@@ -93,12 +111,12 @@ const Calendar = ()=>{
                          <button className="listitem" onClick={()=>setMonth(11)}>December</button>
                      </div>
                      </div>
-                     <button className="prev" style={{backgroundColor: "#fff", color: '#00367d', borderRadius: '10px', height: '2em', cursor: 'pointer', marginLeft: '0px'}} onClick={()=>{
+                     <button className="prev mx-0 mt-0" style={{backgroundColor: "#fff", color: '#00367d', borderRadius: '10px', fontSize: '20px', cursor: 'pointer', marginLeft: '0px'}} onClick={()=>{
                      dispatch({type:"increment"})
                  }}><i className="fa-solid fa-chevron-right" ></i></button>
-                 </h2>
+                 </h4>
                  <div className="" style={{marginBottom: '6px'}}>
-                 <button className="prev" style={{backgroundColor: "#fff", color: '#00367d', borderRadius: '10px', height: '2em', cursor: 'pointer'}} onClick={()=>{
+                 <button className="prev mx-0 mt-0" style={{backgroundColor: "#fff", color: '#00367d', borderRadius: '10px', height: '2em', cursor: 'pointer'}} onClick={()=>{
                      setweekno((prev)=>{
                          if(weekno==1){
                              return 1
@@ -106,9 +124,9 @@ const Calendar = ()=>{
                              return prev-1
                          }
                      })
-                 }}><i className="fa-solid fa-chevron-left" ></i></button>
-                 <h3 style={{marginBottom: '1px', display: 'inline'}}>Week {weekno}</h3>
-                 <button className="prev" style={{backgroundColor: "#fff", color: '#00367d', borderRadius: '10px', height: '2em', cursor: 'pointer'}} onClick={()=>{
+                 }}><i className="fa-solid fa-chevron-left mx-0" ></i></button>
+                 <h5 style={{marginBottom: '1px', display: 'inline'}}>Week {weekno}</h5>
+                 <button className="prev mx-0 mt-0" style={{backgroundColor: "#fff", color: '#00367d', borderRadius: '10px', height: '2em', cursor: 'pointer'}} onClick={()=>{
                      setweekno((prev)=>{
                          if(weekno==6){
                              return prev
@@ -116,7 +134,7 @@ const Calendar = ()=>{
                              return prev+1
                          }
                      })
-                 }}><i className="fa-solid fa-chevron-right" ></i></button>
+                 }}><i className="fa-solid fa-chevron-right mx-0" ></i></button>
                  {/* <div className="dropdown-content">
                      <button className="listitem" onClick={()=>setweekno(1)}>Week 1</button>
                      <button className="listitem" onClick={()=>setweekno(2)}>Week 2</button>
@@ -140,7 +158,9 @@ const Calendar = ()=>{
              </div>
          )
      }else{
-        return <h1>loading...</h1>
+        return (
+            <Circles  color="#00367d" />
+            )
      }
 
 }

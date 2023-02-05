@@ -95,6 +95,14 @@
   cursor: pointer;
   overflow-y: scroll;
 }
+.calendar{
+  width: 100%;
+}
+
+.App{
+  width: 100%;
+  margin-top: auto;
+}
 .box::-webkit-scrollbar{
   display: none;
 }
@@ -143,7 +151,10 @@
   cursor: pointer;
 }
 .mainCalendar{
+  width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: start;
 }
 .hr{
   margin: 0px;
@@ -154,6 +165,7 @@
   padding-top: 6px;
 }
 .centerDiv{
+  width: 100%;
   display: flex;
   
 }
@@ -161,7 +173,7 @@
   margin-top: 30px;
   display: none;
   position: absolute;
-  min-width: 160px;
+  min-width: 150px;
   background-color: #00367d;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -175,6 +187,7 @@
   cursor: pointer;
   background-color: #00367d;
   color: #fff;
+  font-size: .8em;
   
 }
 .timeline{
@@ -206,6 +219,7 @@
   align-items: center;
   justify-content: center;
 }
+
 @media only screen and (max-width: 1200px) {
   .mainCalendar{
     width: 100%;
@@ -267,5 +281,35 @@
     height: 4em;
     cursor: pointer;
     overflow-y: scroll;
+  }
+}
+.logout{
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+  color: #0b2d5a;
+  font-size: 1.2em;
+}
+@media only screen and (max-width: 600px){
+  .App{
+    margin-bottom: auto;
+  }
+  
+  .days{
+    display: grid;
+      align-items: center;
+      color: #0b2d5a;
+      
+      /* play with this to change height of the children, 50% will fill half */
+      grid-template-columns: repeat(8, 12.5vw); /* do not set template columns and rows */
+      grid-template-rows: 1fr; /*do not set template columns and rows*/
+      grid-auto-flow: column;
+      height:12.5vw;
+  }
+  .day,.box,.selected,.boxb{
+    width: 12.5vw;
+    height: 12.5vw;
+    text-align: start;
+    padding: 4px;
   }
 }

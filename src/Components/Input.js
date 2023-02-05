@@ -9,6 +9,12 @@ const Input = (props)=>{
         props.days.map((index, i)=>{
             if(index.selected ){
                 setSelected(true)
+                console.log(index.task)
+                if(index.task){
+                    if(index.task[props.time]){
+                        setInput(index.task[props.time])
+                    }
+                }
             }
         })
     })
@@ -31,13 +37,13 @@ const Input = (props)=>{
             <div className="inputArea">
                 <div>
                     <div>Add event</div>
-                    <input type="text" style={{border: 'none', borderBottom: '2px solid #00367d'}} placeholder="Add your event..." onChange={(e)=>{setInput(e.target.value)}} />
+                    <input type="text" style={{border: 'none', borderBottom: '2px solid #00367d'}} placeholder="Add your event..." onChange={(e)=>{setInput(e.target.value)}} value={input} />
                 </div>
                 <div className="dropdown">
                     {/* <button className="dropbtn" style={{marginInline: '10px', marginBottom: '1px'}}>{props.time}</button> */}
                     
                     </div>
-                    <button onClick={setTask} style={{backgroundColor: '#00367d', border: '2px solid #00367d', color: '#fff', borderRadius: '10px', cursor: 'pointer'}}>Add</button>
+                    <button onClick={setTask} style={{backgroundColor: '#00367d', border: '2px solid #00367d',height:'30px' , color: '#fff', borderRadius: '10px', cursor: 'pointer'}}>Add</button>
             </div>
         )
     }else{

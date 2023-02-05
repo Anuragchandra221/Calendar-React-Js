@@ -30,71 +30,70 @@ const Timeline = (props)=>{
         })
     }
     return (
-        <div className="">
-            
-            {Times.map((index, i)=>{
-                    return (
-                        <div key={`${i}a`}>
-                        <div className="days">
-                        <div  className="day" key={i}>
-                        {/* <span>{index.date}</span> */}
-                        {index}
-                        </div>
-                        {props.days.map((index1, i)=>{
-                            if(i<props.weekno*7 && i>=(props.weekno-1)*7){
-                                if(i===(props.weekno*7-1)){
-                                    return (
-                                        <div className={ index1.selected && props.time===index ?`selected boxb`: `boxb`} style={
-                                            index1.currentMonth?{backgroundColor: '#fff'}:{backgroundColor: '#dedede', opacity: '0.5', cursor: 'default'} } onClick={()=>{
-                                            if(index1.currentMonth){
-                                                select(index1, index)
-                                            }
-                                        }}  key={`${i}b`}>
-                                        {/* <span>{index.date}</span> */}
-                                        
-                                        { index1.task?
-                                        Object.keys(index1.task).map(key => {
-                                            if(key==index){
-                                                return (
-                                                    <span>{index1.task[key]}</span>
-                                                )
-                                            }
-                                        }):''}
-                                        </div> 
-                                    )
-                                }else{
-                                    return (
-                                        <div   className={ index1.selected && props.time===index ?`selected`: `box`} style={
-                                            index1.currentMonth?{backgroundColor: '#fff'}:{backgroundColor: '#dedede', opacity: '0.5', cursor: 'default'} } onClick={()=>{
-                                            if(index1.currentMonth){
-                                                select(index1, index)
-                                            }
-                                        }}  key={`${i}b`}>
-                                        {/* <span>{index.date}</span> */}
-                                        
-                                        { index1.task?
-                                        Object.keys(index1.task).map(key => {
-                                            if(key==index){
-                                                return (
-                                                    <span>{index1.task[key]}</span>
-                                                )
-                                            }
-                                        }):''}
-                                        </div> 
-                                    )
+        <div>
+                {Times.map((index, i)=>{
+                        return (
+                            <div key={`${i}a`}>
+                                
+                            <div className="days">
+                            <div  className="day" key={i}>
+                            {/* <span>{index.date}</span> */}
+                            {index}
+                            </div>
+                            {props.days.map((index1, i)=>{
+                                if(i<props.weekno*7 && i>=(props.weekno-1)*7){
+                                    if(i===(props.weekno*7-1)){
+                                        return (
+                                            <div className={ index1.selected && props.time===index ?`selected boxb`: `boxb`} style={
+                                                index1.currentMonth?{backgroundColor: '#fff'}:{backgroundColor: '#dedede', opacity: '0.5', cursor: 'default'} } onClick={()=>{
+                                                if(index1.currentMonth){
+                                                    select(index1, index)
+                                                }
+                                            }}  key={`${i}b`}>
+                                            {/* <span>{index.date}</span> */}
+                                            
+                                            { index1.task?
+                                            Object.keys(index1.task).map(key => {
+                                                if(key==index){
+                                                    return (
+                                                        <span>{index1.task[key]}</span>
+                                                    )
+                                                }
+                                            }):''}
+                                            </div> 
+                                        )
+                                    }else{
+                                        return (
+                                            <div   className={ index1.selected && props.time===index ?`selected`: `box`} style={
+                                                index1.currentMonth?{backgroundColor: '#fff'}:{backgroundColor: '#dedede', opacity: '0.5', cursor: 'default'} } onClick={()=>{
+                                                if(index1.currentMonth){
+                                                    select(index1, index)
+                                                }
+                                            }}  key={`${i}b`}>
+                                            {/* <span>{index.date}</span> */}
+                                            
+                                            { index1.task?
+                                            Object.keys(index1.task).map(key => {
+                                                if(key==index){
+                                                    return (
+                                                        <span>{index1.task[key]}</span>
+                                                    )
+                                                }
+                                            }):''}
+                                            </div> 
+                                        )
+                                    }
+                                    
                                 }
                                 
-                            }
-                            
-                        })}
-                    
-                        </div>
-                        {index==='1:30'?<></>:<hr className="hr" />}
-                        </div>
-                    )
-                    
-            })}
-
+                            })}
+                        
+                            </div>
+                            {index==='1:30'?<></>:<hr className="hr" />}
+                            </div>
+                        )
+                        
+                })}
             </div>
     )
 }
