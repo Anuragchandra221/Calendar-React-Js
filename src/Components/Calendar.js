@@ -31,8 +31,10 @@ const Calendar = ()=>{
         var decoded = jwtDecode(token)
         username = decoded.username
     }
+    document.getElementById('root').style.display = 'block'
     // console.log("calendar")
      useEffect(()=>{
+        
         if(loading){
             dict1 = {}
             if(getToken()){
@@ -159,7 +161,9 @@ const Calendar = ()=>{
          )
      }else{
         return (
+            <div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
             <Circles  color="#00367d" />
+            </div>
             )
      }
 

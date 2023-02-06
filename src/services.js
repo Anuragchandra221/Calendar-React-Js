@@ -14,7 +14,7 @@ function getData(){
     }
     )
 }
-function postData(title,year,month,day,time,date){
+function postData(title,year,month,day,time){
     const token = getToken()
     return axios.post(`${baseUrl}/create`,
     {
@@ -22,8 +22,7 @@ function postData(title,year,month,day,time,date){
         "year":year,
         "month":month,
         "day":day,
-        "time":time,
-        "date":date
+        "time":time
     },{
         headers:{
             'Authorization': `Bearer ${token}`
@@ -59,4 +58,18 @@ const registerUser = (username, password, email)=>{
 const checkUser = (usr)=>{
     return axios.get(`${baseUrl}/checkUser/${usr}`)
 }
-export {getData,postData, login, setUserSession,getToken, refreshToken, registerUser, checkUser}
+const deleteTask = (title,year,month,day,time)=>{
+    const token = getToken()
+    return axios.post(`${baseUrl}/deleteTask/`,{
+        "title":title,
+        "year":year,
+        "month":month,
+        "day":day,
+        "time":time
+    },{
+        headers:{
+            'Authorization': `Bearer ${token}`
+        }
+    })
+}
+export {getData,postData, login, setUserSession,getToken, refreshToken, registerUser, checkUser, deleteTask}

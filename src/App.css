@@ -106,6 +106,10 @@
 .box::-webkit-scrollbar{
   display: none;
 }
+.box {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 .boxb::-webkit-scrollbar{
   display: none;
 }
@@ -126,7 +130,7 @@
   /* position: absolute; */
   margin-inline: 20px;
   padding-top: 110px;
-  width: 20em;
+  width: 31em;
 }
 .inputArea input{
   width: 70%;
@@ -225,7 +229,16 @@
     width: 100%;
     padding: 0;
   }
-
+  .inputArea input{
+    width: 80%;
+    height: 1.5em;
+    margin-block: 15px;
+    outline: none;
+  }
+  .inputArea button{
+    width: 80%;
+    height: 2.5em;
+  }
   .centerDiv{
     width: 100%;
   }
@@ -290,11 +303,53 @@
   color: #0b2d5a;
   font-size: 1.2em;
 }
+@media only screen and (max-width: 900px){
+  .inputArea input{
+    width: 60%;
+    height: 1.5em;
+    margin-block: 15px;
+    outline: none;
+  }
+  .box::-webkit-scrollbar{
+    display: none;
+  }
+  .box {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .inputArea button{
+    width: 60%;
+    height: 2.5em;
+  }
+  .inputArea{
+    /* position: absolute; */
+    margin-inline: 0px;
+    padding-block: 10px;
+    width: 80%;
+    margin-inline: auto;
+  }
+}
 @media only screen and (max-width: 600px){
   .App{
     margin-bottom: auto;
   }
-  
+  .box::-webkit-scrollbar{
+    display: none;
+  }
+  .box {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .inputArea input{
+    width: 80%;
+    height: 1.5em;
+    margin-block: 15px;
+    outline: none;
+  }
+  .inputArea button{
+    width: 80%;
+    height: 2.5em;
+  }
   .days{
     display: grid;
       align-items: center;
