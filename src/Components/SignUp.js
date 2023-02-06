@@ -13,6 +13,7 @@ function SignUp() {
     const [passErr, setPassErr] = useState()
     const [userErr, setUserErr] = useState()
     const navigate = useNavigate()
+    document.getElementById('root').style.display = 'flex'
     const validateEmail = (e)=>{
         if(email){
             if(email.toLowerCase().match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/)){

@@ -9,7 +9,7 @@ const Login = ()=>{
     const [password, setPassword] = useState()
     const [err, setErr] = useState()
     const navigate = useNavigate()
-    
+    document.getElementById('root').style.display = 'flex'
     useEffect(()=>{
         if(getToken()){
             navigate("/")
