@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export const Times = ['9:30','10:30','11:30', '12:30', '1:30']
+export const Times = ['9:30','10:30','11:30', '12:30', '1:30','2:30','3:30','4:30','5:30','6:30']
 
 
 const tasks = [
@@ -36,7 +36,7 @@ const Timeline = (props)=>{
                             <div key={`${i}a`}>
                                 
                             <div className="days">
-                            <div  className="day" key={i}>
+                            <div  className="day" style={{backgroundColor: 'bisque'}} key={i}>
                             {/* <span>{index.date}</span> */}
                             {index}
                             </div>
@@ -45,7 +45,7 @@ const Timeline = (props)=>{
                                     if(i===(props.weekno*7-1)){
                                         return (
                                             <div className={ index1.selected && props.time===index ?`selected boxb`: `boxb`} style={
-                                                index1.currentMonth?{backgroundColor: '#fff'}:{backgroundColor: '#dedede', opacity: '0.5', cursor: 'default'} } onClick={()=>{
+                                                index1.currentMonth?{backgroundColor: 'azure'}:{backgroundColor: 'aliceblue', opacity: '0.5', cursor: 'default'} } onClick={()=>{
                                                 if(index1.currentMonth){
                                                     select(index1, index)
                                                 }
@@ -65,7 +65,7 @@ const Timeline = (props)=>{
                                     }else{
                                         return (
                                             <div   className={ index1.selected && props.time===index ?`selected`: `box`} style={
-                                                index1.currentMonth?{backgroundColor: '#fff'}:{backgroundColor: '#dedede', opacity: '0.5', cursor: 'default'} } onClick={()=>{
+                                                index1.currentMonth?{backgroundColor: 'azure'}:{backgroundColor: 'aliceblue', opacity: '0.5', cursor: 'default'} } onClick={()=>{
                                                 if(index1.currentMonth){
                                                     select(index1, index)
                                                 }

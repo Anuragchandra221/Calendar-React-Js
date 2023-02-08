@@ -77,10 +77,21 @@
   cursor: pointer;
   /* display: grid; */
 }
-.mCalendar{
+.weeks{
+  position: sticky;
+  top: 0px;
+  background-color: azure;
+  z-index: 1;
   padding: 10px;
+}
+.mCalendar{
+  /* padding: 10px; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 10px;
+  overflow-y: scroll;
+  height: 90vh;
+  position: relative;
+  background-color: azure;
 }
 .box{
   border-right: 2px solid grey;
@@ -242,6 +253,7 @@
   .centerDiv{
     width: 100%;
   }
+  
   .mCalendar{
     width: 98%;
     margin-inline: auto;
@@ -250,6 +262,7 @@
     padding: 0px;
     padding-bottom: 10px;
     padding-inline: 4px;
+    
   }
   .hr{
     margin: 0px;
@@ -335,6 +348,16 @@
   }
   .box::-webkit-scrollbar{
     display: none;
+  }
+  .weeks{
+    margin-bottom: 20px;
+  }
+  .mCalendar::-webkit-scrollbar{
+    display: none;
+  }
+  .mCalendar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
   .box {
     -ms-overflow-style: none;  /* IE and Edge */

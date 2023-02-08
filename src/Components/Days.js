@@ -85,7 +85,7 @@ const Days = (props)=>{
                 </div>
                 <div className="mCalendar">
                     
-                    <div   className="days ">
+                    <div   className="days weeks">
                         <div className="day"></div>
                             {days.map((index, i)=>{
                                 // {console.log(index.month)}
