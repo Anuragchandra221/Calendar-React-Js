@@ -7,6 +7,7 @@ const Input = (props)=>{
     const [selected, setSelected] = useState(false)
     const [err, setErr] = useState()
     const [data, setData] = useState()
+    const [canAdd, setCanAdd] = useState(true)
     useEffect(()=>{
         props.days.map((index, i)=>{
             if(index.selected ){
@@ -15,11 +16,12 @@ const Input = (props)=>{
                 if(index.task){
                     if(index.task[props.time]){
                         setInput(index.task[props.time])
+                        setErr("Delete this task to add new task!")
+                        setCanAdd(false)
                     }else{
-                        setInput('')
+                        setCanAdd(true)
+                        setErr()
                     }
-                }else{
-                    setInput()
                 }
             }
         })
@@ -44,8 +46,8 @@ const Input = (props)=>{
                 <div>
                     <div>Add event</div>
                     <input type="text" id="addInput" style={{border: 'none', borderBottom: '2px solid #00367d'}} placeholder="Add your event..." onChange={(e)=>{
-                        if(input){
-                            setErr("Already task is there..")
+                        if(!canAdd){
+                            
                         }else{
                             setInput(e.target.value)
                         }
@@ -58,7 +60,7 @@ const Input = (props)=>{
                     </div>
                     <p className="invalid" >{err?err:''}</p>
                     <button className="addTask" onClick={setTask} style={{backgroundColor: '#00367d', border: '2px solid #00367d',height:'30px' , color: '#fff', borderRadius: '10px', cursor: 'pointer'}}>Add</button>
-                    <button className="addTask mt-3 btn-danger" onClick={()=>{
+                    {!canAdd?<button className="addTask mt-3 btn-danger" onClick={()=>{
                         console.log(data, props.time)
                         deleteTask(data.task[props.time],data.year,data.month,data.number,props.time).then((results)=>{
                             console.log(results.data)
@@ -78,14 +80,14 @@ const Input = (props)=>{
                                 }
                             }
                         })
-                        setInput('')
-                       deleteTask(data.task[props.time],data.year,data.month,data.number,props.time).then((results)=>{
-                        console.log(results.data)
-                       }).catch((err)=>{
-                        console.log(err)
-                       })
+                    //     setInput('')
+                    //    deleteTask(data.task[props.time],data.year,data.month,data.number,props.time).then((results)=>{
+                    //     // console.log(results.data)
+                    //    }).catch((err)=>{
+                    //     console.log(err)
+                    //    })
                         setErr()
-                    }} style={{backgroundColor: '#00367d', border: '2px solid #00367d',height:'30px' , color: '#fff', borderRadius: '10px', cursor: 'pointer'}}>Delete Task</button>
+                    }} style={{backgroundColor: '#00367d', border: '2px solid #00367d',height:'30px' , color: '#fff', borderRadius: '10px', cursor: 'pointer'}}>Delete Task</button>:<></>}
             </div>
         )
     }else{
