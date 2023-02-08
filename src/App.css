@@ -352,6 +352,11 @@
   .weeks{
     margin-bottom: 20px;
   }
+  .mCalendar{
+    height: auto;
+    padding-bottom: 0;
+    padding-inline: 0;
+  }
   .mCalendar::-webkit-scrollbar{
     display: none;
   }
