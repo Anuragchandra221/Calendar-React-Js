@@ -3,11 +3,13 @@ import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { getToken, login } from "../services"
 import './style/Login.css'
+import { FidgetSpinner } from 'react-loader-spinner'
 
 const Login = ()=>{
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
     const [err, setErr] = useState()
+    const [isLogin, setIsLogin] = useState(false)
     const navigate = useNavigate()
     document.getElementById('root').style.display = 'flex'
     useEffect(()=>{
@@ -15,10 +17,11 @@ const Login = ()=>{
             navigate("/")
         }
     },[])
-    console.log(err)
+    console.log(isLogin)
     const submit = (e)=>{
             e.preventDefault();
             if(username && password){
+                setIsLogin(true)
                 login(username,password).then((results)=>{
                     setErr()
                     localStorage.removeItem("access_token")
@@ -28,8 +31,8 @@ const Login = ()=>{
                     localStorage.setItem("refresh_token", results.data.refresh)
                     navigate("/")
                 }).catch((err)=>{
+                    setIsLogin(false)
                     setErr("Invalid credentials")
-                    console.log("invalid")
                 })
             }else{
                 setErr("Enter your credentials")
@@ -49,9 +52,14 @@ const Login = ()=>{
                 }} />
                 <br />
                 <p className="invalid mt-2 mb-0 ml-2">{err?err:<></>}</p>
-                <button onClick={submit} className="button mx-auto mt-3">
+                <div>
+                    {isLogin?<div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
+            <FidgetSpinner  color="#00367d" />
+            </div>:<button onClick={submit} className="button mx-auto mt-3">
                     Login
-                </button>
+                </button>}
+                </div>
+                
             </form>
             <p className="mt-3">Don't have an account? <Link to="/register">Sign up</Link></p>
         </div>

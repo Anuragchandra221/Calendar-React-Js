@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { checkUser, registerUser } from '../services'
 import './style/SignUp.css'
+import { FidgetSpinner } from 'react-loader-spinner'
 
 function SignUp() {
     const [username, setUsername] = useState()
@@ -12,6 +13,7 @@ function SignUp() {
     const [passwordErr, setPasswordErr] = useState()
     const [passErr, setPassErr] = useState()
     const [userErr, setUserErr] = useState()
+    const [IsLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
     document.getElementById('root').style.display = 'flex'
     const validateEmail = (e)=>{
@@ -43,11 +45,13 @@ function SignUp() {
     }
     const register = (e)=>{
         e.preventDefault()
-        console.log('hihi')
         if(username && password && confirmPassword && email){
             if(!passErr && !passwordErr && !emailErr){
+                setIsLoading(true)
                 registerUser(username,password,email).then((results)=>{
                     navigate("/login")
+                }).catch((err)=>{
+                    setIsLoading(false)
                 })
             }
         }
@@ -96,7 +100,9 @@ function SignUp() {
                 className={!passwordErr?"input green mb-2":"input red mb-2"}
                 />
                 <p>{passwordErr?<span className='invalid'>{passwordErr}</span>:<></>}</p>
-            <button onClick={register} className="button">Register</button>
+            {IsLoading?<div style={{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
+            <FidgetSpinner  color="#00367d" />
+            </div>:<button onClick={register} className="button">Register</button>}
         </form>
         <p className='mt-3 mx-auto'>Already have an account? <Link to="/login">Login</Link></p>
     </div>
